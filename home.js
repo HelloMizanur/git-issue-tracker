@@ -41,7 +41,7 @@ const displayAllIssues = (data) => {
                     : data.priority === "medium"
                       ? "bg-yellow-100 text-yellow-700"
                       : "bg-gray-200 text-gray-700"
-                } } "
+                }"
                 >${data.priority}</span
               >
             </div>
@@ -62,7 +62,6 @@ const displayAllIssues = (data) => {
           </div>
         </div>
     `;
-    return;
   });
 };
 
