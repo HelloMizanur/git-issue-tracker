@@ -55,11 +55,21 @@
     <main class="py-10">
       <!-- All open close navigaton section -->
       <section
-        class="shadow p-5 border border-gray-200 rounded w-10/12 mx-auto"
+        id="btn-container"
+        class="shadow p-5 border border-gray-200 rounded w-10/12 mx-auto flex gap-2"
       >
-        <button class="btn btn-primary w-20">All</button>
-        <button class="btn w-20">Open</button>
-        <button class="btn w-20">Close</button>
+        <button
+          onclick="handleActiveBtn(this)"
+          class="btn btn-primary filter-btn w-20"
+        >
+          All
+        </button>
+        <button onclick="handleActiveBtn(this)" class="btn filter-btn w-20">
+          Open
+        </button>
+        <button onclick="handleActiveBtn(this)" class="btn filter-btn w-20">
+          Close
+        </button>
       </section>
       <!-- Issue status section  -->
       <section
@@ -92,44 +102,8 @@
         class="p-5 border border-gray-200 w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"
       >
         <!-- Card  -->
-        <div class="bg-green-700 pt-1 rounded shadow-xl">
-          <div class="flex flex-col gap-4 p-3 bg-white rounded">
-            <div class="flex justify-between items-center">
-              <img src="assets/Open-Status.png" alt="open" />
-              <span
-                class="bg-red-100 text-red-700 font-bold py-1 px-4 rounded-full"
-                >status</span
-              >
-            </div>
-            <h1 class="text-xl font-bold">
-              Fix navigation menu on mobile devices
-            </h1>
-            <p class="text-gray-600">
-              The navigation menu doesn't collapse properly on mobile devices...
-            </p>
-            <div>
-              <p
-                class="bg-red-100 text-red-700 py-1 px-4 rounded-full inline-block space-x-1"
-              >
-                <i class="fa-solid fa-bug"></i>
-                <span class="font-bold text-xl"> Bug</span>
-              </p>
-              <p
-                class="bg-amber-100 text-amber-400 py-1 pb-3 px-4 rounded-full inline-block"
-              >
-                <i class="fa-solid fa-universal-access"></i>
-                <span class="font-bold text-xl">help wanted</span>
-              </p>
-              <hr class="-mx-3 my-2 border-gray-300" />
-            </div>
-            <p class="text-gray-400">#1 by john_doe</p>
-            <p class="text-gray-400">1/15/2024</p>
-          </div>
-        </div>
       </section>
       <!-- Modal -->
-      <!-- Open the modal using ID.showModal() method -->
-      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
       <dialog id="myModalData" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
           <div id="modalBox" class="flex flex-col gap-4"></div>
@@ -142,6 +116,10 @@
         </div>
       </dialog>
     </main>
+    <!-- Loder -->
+    <div id="loder" class="flex justify-center hidden">
+      <span class="loading loading-spinner loading-xl"></span>
+    </div>
 
     <!-- Js -->
     <script src="home.js"></script>

@@ -2,13 +2,19 @@ const allIssuesCounter = document.getElementById("allIssuesCounter");
 const cardSection = document.getElementById("cardSection");
 const myModalData = document.getElementById("myModalData");
 const modalBox = document.getElementById("modalBox");
+const loder = document.getElementById("loder");
+let allData;
 // Load all Issues
 const loadAllIssueData = async () => {
   try {
+    showLoader();
     const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues`;
     const res = await fetch(url);
     const data = await res.json();
-    displayAllIssues(data);
+    allData = data.data;
+    removeLoader();
+
+    displayAllIssues(data.data);
   } catch (error) {
     console.error("Could not fetch issues", error);
   }
@@ -16,11 +22,11 @@ const loadAllIssueData = async () => {
 
 // Display all issues
 const displayAllIssues = (data) => {
-  allIssuesCounter.innerText = data.data.length;
+  allIssuesCounter.innerText = data.length;
 
   cardSection.innerHTML = "";
 
-  data.data.forEach((data) => {
+  data.forEach((data) => {
     cardSection.innerHTML += `
         <div onClick='loadModalData(${data.id})' class=" pt-1 rounded shadow-xl ${data.status === "open" ? "bg-green-700" : "bg-[#A855F7]"}">
           <div class="flex h-full flex-col gap-4 p-3 bg-white rounded">
@@ -100,7 +106,6 @@ const loadModalData = async (id) => {
 // Display modal data
 
 const displayModal = (data) => {
-  console.log(data);
   modalBox.innerHTML = `
         <h1 class="text-3xl font-bold">${data.title}</h1>
             <div class="flex gap-2 items-center">
@@ -138,5 +143,37 @@ const displayModal = (data) => {
 
   myModalData.showModal();
 };
+
+// Show Loader
+const showLoader = () => {
+  loder.classList.remove("hidden");
+};
+// Remove Loader
+const removeLoader = () => {
+  loder.classList.add("hidden");
+};
+
+// active menu
+function handleActiveBtn(clickedElement) {
+  const allButtons = document.querySelectorAll(".filter-btn");
+  for (const btn of allButtons) {
+    btn.classList.remove("btn-primary");
+  }
+  clickedElement.classList.add("btn-primary");
+  if (clickedElement.innerText === "Open") {
+    const openData = allData.filter(
+      (data) => data.status.toLowerCase() === "open",
+    );
+    displayAllIssues(openData);
+  } else if (clickedElement.innerText === "Close") {
+    const closedata = allData.filter(
+      (data) => data.status.toLowerCase() === "closed",
+    );
+    displayAllIssues(closedata);
+  } else {
+    displayAllIssues(allData);
+  }
+  return;
+}
 
 loadAllIssueData();
