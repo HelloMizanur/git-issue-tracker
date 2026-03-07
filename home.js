@@ -1,6 +1,7 @@
 const allIssuesCounter = document.getElementById("allIssuesCounter");
 const cardSection = document.getElementById("cardSection");
 const myModalData = document.getElementById("myModalData");
+const modalBox = document.getElementById("modalBox");
 // Load all Issues
 const loadAllIssueData = async () => {
   try {
@@ -26,7 +27,7 @@ const displayAllIssues = (data) => {
             <div class="flex justify-between items-center">
               <img src="${data.status === "open" ? "assets/Open-Status.png" : "assets/closed.png"}" alt="open" />
               <span
-                class="font-bold py-1 px-4 rounded-full ${
+                class="font-bold py-1 px-4 capitalize rounded-full ${
                   data.priority === "high"
                     ? "bg-red-100 text-red-700"
                     : data.priority === "medium"
@@ -48,8 +49,8 @@ const displayAllIssues = (data) => {
              
             </div>
              <hr class="-mx-3 my-2 border-gray-300" />
-            <p class="text-gray-400"># ${data.author}</p>
-            <p class="text-gray-400">${data.createdAt}</p>
+            <p class="text-gray-400">#${data.id} ${data.author}</p>
+            <p class="text-gray-400">${data.createdAt.split("T")[0]}</p>
           </div>
         </div>
     `;
@@ -77,7 +78,7 @@ const generateLabels = (labelsArray) => {
       } else {
         return `
         <p class="bg-green-100 text-green-700 py-1 px-4 rounded-full inline-block">
-          <span class="font-bold text-xl"> ${label}</span>
+          <span class="font-bold capitalize text-xl"> ${label}</span>
         </p>`;
       }
     })
@@ -86,16 +87,55 @@ const generateLabels = (labelsArray) => {
 
 // Load modal data
 const loadModalData = async (id) => {
-  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id};`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayModal(data);
+  try {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayModal(data.data);
+  } catch (error) {
+    console.log("Data not fetch", error);
+  }
 };
 
 // Display modal data
 
 const displayModal = (data) => {
   console.log(data);
+  modalBox.innerHTML = `
+        <h1 class="text-3xl font-bold">${data.title}</h1>
+            <div class="flex gap-2 items-center">
+              <p
+                class="${data.status === "open" ? "bg-green-600" : "bg-[#A855F7]"} font-bold text-xl text-white py-1 px-4 rounded-full inline-block"
+              >
+                ${data.status}
+              </p>
+              <p class="font-bold text-gray-500">
+                . Opened by <span class="capitalize">${data.author}</span>
+              </p>
+              <p class="font-bold text-gray-500">. ${data.createdAt.split("T")[0]}</p>
+            </div>
+            <div>${generateLabels(data.labels)}</div>
+            <p class="text-xl text-gray-500">
+              ${data.description}
+            </p>
+            <div class="grid grid-cols-2">
+              <p class="text-xl font-bold text-gray-500">Assignee:</p>
+              <p class="text-xl font-bold text-gray-500">Priority:</p>
+              <p class="text-xl capitalize">${data.assignee.length === 0 ? "No Assigne" : data.assignee}</p>
+              <p
+                class="${
+                  data.priority === "high"
+                    ? "bg-red-600 "
+                    : data.priority === "medium"
+                      ? "bg-yellow-600"
+                      : "bg-gray-600 "
+                } font-bold text-xl text-white py-1 px-4 capitalize rounded-full w-fit"
+              >
+                ${data.priority}
+              </p>
+            </div>
+    `;
+
   myModalData.showModal();
 };
 
