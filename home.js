@@ -3,6 +3,8 @@ const cardSection = document.getElementById("cardSection");
 const myModalData = document.getElementById("myModalData");
 const modalBox = document.getElementById("modalBox");
 const loder = document.getElementById("loder");
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
 let allData;
 // Load all Issues
 const loadAllIssueData = async () => {
@@ -175,5 +177,21 @@ function handleActiveBtn(clickedElement) {
   }
   return;
 }
+
+// Searh option
+searchBtn.addEventListener("click", async () => {
+  try {
+    showLoader();
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchInput.value.trim()}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    removeLoader();
+    allData = data.data;
+    searchInput.value = "";
+    displayAllIssues(allData);
+  } catch (error) {
+    console.log("Data can not fetch", error);
+  }
+});
 
 loadAllIssueData();
