@@ -68,7 +68,9 @@
         <div class="flex items-center gap-3">
           <img src="assets/Aperture.png" alt="Aperture" />
           <div>
-            <p class="text-xl font-bold"><span>50</span> Issues</p>
+            <p class="text-xl font-bold">
+              <span id="allIssuesCounter"></span> Issues
+            </p>
             <p class="text-gray-600">Track and manage your project issues</p>
           </div>
         </div>
@@ -79,11 +81,69 @@
           </div>
           <div class="flex">
             <span><i class="fa-solid fa-circle text-[#A855F7]"></i></span>
-            <p>Close</p>
+            <p>Closed</p>
           </div>
         </div>
       </section>
+
+      <!-- Cards section -->
+      <section
+        id="cardSection"
+        class="p-5 border border-gray-200 w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4"
+      >
+        <!-- Card  -->
+        <div class="bg-green-700 pt-1 rounded shadow-xl">
+          <div class="flex flex-col gap-4 p-3 bg-white rounded">
+            <div class="flex justify-between items-center">
+              <img src="assets/Open-Status.png" alt="open" />
+              <span
+                class="bg-red-100 text-red-700 font-bold py-1 px-4 rounded-full"
+                >status</span
+              >
+            </div>
+            <h1 class="text-xl font-bold">
+              Fix navigation menu on mobile devices
+            </h1>
+            <p class="text-gray-600">
+              The navigation menu doesn't collapse properly on mobile devices...
+            </p>
+            <div>
+              <p
+                class="bg-red-100 text-red-700 py-1 px-4 rounded-full inline-block space-x-1"
+              >
+                <i class="fa-solid fa-bug"></i>
+                <span class="font-bold text-xl"> Bug</span>
+              </p>
+              <p
+                class="bg-amber-100 text-amber-400 py-1 pb-3 px-4 rounded-full inline-block"
+              >
+                <i class="fa-solid fa-universal-access"></i>
+                <span class="font-bold text-xl">help wanted</span>
+              </p>
+              <hr class="-mx-3 my-2 border-gray-300" />
+            </div>
+            <p class="text-gray-400">#1 by john_doe</p>
+            <p class="text-gray-400">1/15/2024</p>
+          </div>
+        </div>
+      </section>
+      <!-- Modal -->
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+      <dialog id="myModalData" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <h3 class="text-lg font-bold">Hello!</h3>
+          <p class="py-4">Press ESC key or click the button below to close</p>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
+
     <!-- Js -->
     <script src="home.js"></script>
   </body>
