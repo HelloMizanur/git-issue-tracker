@@ -1,4 +1,4 @@
-# 🚀 My JavaScript Learning Summary
+# My JavaScript Learning Summary
 
 In this section, I have summarized some fundamental JavaScript concepts that I use in my projects. These are the core pillars of my modern web development workflow.
 
