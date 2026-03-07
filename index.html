@@ -43,14 +43,24 @@
       <div>
         <fieldset class="fieldset w-full p-4">
           <label class="label">User Name</label>
-          <input type="text" class="input w-full" placeholder="User Name" />
+          <input
+            id="userName"
+            type="text"
+            class="input w-full"
+            placeholder="User Name"
+          />
           <p class="text-blue-900">Default: admin</p>
 
           <label class="label">Password</label>
-          <input type="password" class="input w-full" placeholder="Password" />
+          <input
+            id="userPassword"
+            type="password"
+            class="input w-full"
+            placeholder="Password"
+          />
           <p class="text-blue-900">Default: admin123</p>
 
-          <button class="btn btn-primary mt-4">Login</button>
+          <button id="loginBtn" class="btn btn-primary mt-4">Login</button>
         </fieldset>
         <div class="flex w-full flex-col">
           <div class="divider">OR</div>
@@ -62,9 +72,22 @@
           </p>
         </div>
       </div>
+      <!-- modal for incorect user and password -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box bg-red-500">
+          <h3 class="text-lg font-bold text-white">Hello!</h3>
+          <p class="py-4 text-white">User Credential is not correct!</p>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </section>
 
     <!-- Js -->
-    <script src="script.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
