@@ -76,16 +76,19 @@ const generateLabels = (labelsArray) => {
       if (l === "bug") {
         return `
         <p class="bg-red-100 text-red-700 py-1 px-4 rounded-full inline-block">
+        <i class="fa-solid fa-bug"></i>
           <span class="font-bold text-xl"> Bug</span>
         </p>`;
       } else if (l === "help wanted") {
         return `
         <p class="bg-amber-100 text-amber-400 py-1 px-4 rounded-full inline-block">
+        <i class="fa-solid fa-user-astronaut"></i>
           <span class="font-bold text-xl"> Help wanted</span>
         </p>`;
       } else {
         return `
         <p class="bg-green-100 text-green-700 py-1 px-4 rounded-full inline-block">
+        <i class="fa-brands fa-yelp"></i>
           <span class="font-bold capitalize text-xl"> ${label}</span>
         </p>`;
       }
