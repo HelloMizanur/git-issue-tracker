@@ -5,6 +5,7 @@ const modalBox = document.getElementById("modalBox");
 const loder = document.getElementById("loder");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
+
 let allData;
 // Load all Issues
 const loadAllIssueData = async () => {
@@ -187,6 +188,14 @@ searchBtn.addEventListener("click", async () => {
     removeLoader();
     allData = data.data;
     searchInput.value = "";
+    const allButtons = document.querySelectorAll(".filter-btn");
+    for (const btn of allButtons) {
+      if (btn.innerText === "All") {
+        btn.classList.add("btn-primary");
+      } else {
+        btn.classList.remove("btn-primary");
+      }
+    }
     displayAllIssues(allData);
   } catch (error) {
     console.log("Data can not fetch", error);
