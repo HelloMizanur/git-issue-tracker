@@ -6,7 +6,7 @@ In this section, I have summarized some fundamental JavaScript concepts that I u
 
 ### 1️⃣ var, let, and const
 
-I use these to manage variable scope and data stability:
+I use these to manage variable scope and data stability: h
 
 - **var:** This is the traditional way to declare variables. I avoid using it in my modern projects because it is function-scoped and can be re-declared, which often leads to unintended bugs.
 - **let:** I use `let` when I need a variable that is block-scoped. It allows me to update the value later while preventing me from accidentally re-declaring the same variable.
