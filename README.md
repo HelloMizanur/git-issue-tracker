@@ -35,4 +35,3 @@ I prefer using arrow functions for a cleaner and more concise syntax. By removin
 I use template literals with backticks (`` ` ``) for easier string management. They allow me to perform **string interpolation** by embedding my variables directly using `${variable}`, and they make writing multi-line strings much simpler for me.
 
 ---
-Hello
