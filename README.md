@@ -2,7 +2,7 @@
 
 In this section, I have summarized some fundamental JavaScript concepts that I use in my projects. These are the core pillars of my modern web development workflow.
 
----
+---hhggg
 
 ### 1️⃣ var, let, and const
 
